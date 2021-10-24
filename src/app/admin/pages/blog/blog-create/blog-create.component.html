@@ -1,0 +1,68 @@
+<h2 class="text-3xl font-museoBold text-gray-800">Nova Postagem</h2>
+<form class="w-full max-w-3xl mt-8"  [formGroup]="postForm">
+  <div class="mb-6">
+    <div class="w-full">
+      <label class="block text-gray-500  mb-1 md:mb-0 pr-4" for="title-field">
+        Título
+      </label>
+      <input class="input-admin mt-3" id="title-field" type="text" formControlName="titulo" maxlength="100">
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="postForm.get('titulo').touched && postForm.get('titulo').hasError('required')">Campo Obrigatório.</div>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <div class="w-full">
+      <label class="block text-gray-500 mb-1 md:mb-0 pr-4" for="resume-field">
+        Resumo
+      </label>
+      <input class="input-admin mt-3" id="resume-field" type="text" formControlName="resumo" >
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="postForm.get('resumo').touched && postForm.get('resumo').hasError('required')">Campo Obrigatório.</div>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <div class="w-full">
+      <label class="block text-gray-500 mb-1 md:mb-0 pr-4" for="type-field">
+        Marcar como destaque?
+      </label>
+      <select id="type-field" class="input-admin mt-3" formControlName="destaque">
+        <option  selected value="0">Não</option>
+        <option  value="1">Sim</option>
+      </select>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="postForm.get('destaque').touched && postForm.get('destaque').hasError('required')">Campo Obrigatório.</div>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <div class="w-full">
+      <label class="block text-gray-500 mb-1 md:mb-0 pr-4" for="img-field">
+        Imagem
+      </label>
+      <input class="mt-3" id="img-field" type="file" (change)="setFotoDestaque($event)" accept=".jpg,.jpeg,.png" formControlName="file">
+      <img class="w-5/12" *ngIf="previewUrl" [src]="previewUrl" alt="Foto de Destaque">
+    </div>
+  </div>
+
+
+  <div class="mb-6">
+    <div class="w-full">
+      <label class="block text-gray-500 mb-1 md:mb-0 pr-4" for="text-field">
+        Conteúdo
+      </label>
+      <angular-editor id="text-field" [config]="config" formControlName="texto"></angular-editor>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="postForm.get('texto').touched && postForm.get('texto').hasError('required')">Campo Obrigatório.</div>
+    </div>
+  </div>
+  <div class="md:flex">
+    <div class="w-full text-center md:text-right">
+      <button type="button"  (click)="salvar()" [disabled]="postForm.invalid"  [ngClass]="postForm.invalid? 'opacity-70 cursor-default': 'hover:bg-white hover:text-orange'"
+      class="rounded-button py-3 px-16 rounded-full bg-orange text-white text-md uppercase border-2 border-solid  text-center focus:outline-none" >
+        <span *ngIf="!showloading">
+          Salvar >
+        </span>
+        <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </button>
+    </div>
+    <!-- <div class="text-base text-orange mt-2" *ngIf="errorMessage">{{errorMessage}}</div> -->
+  </div>
+</form>

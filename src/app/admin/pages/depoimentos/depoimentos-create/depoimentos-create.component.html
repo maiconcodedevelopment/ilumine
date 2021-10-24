@@ -1,0 +1,63 @@
+<h2 class="text-3xl font-museoBold text-gray-800">Novo Depoimento</h2>
+<form class="w-full max-w-3xl mt-8"  [formGroup]="angForm">
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Nome
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="nome" maxlength="50" >
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('nome').touched && angForm.get('nome').hasError('required')">Campo Obrigatório.</div>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('nome').touched && angForm.get('nome').hasError('minLength')">Campo muito curto.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Resenha
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="resenha"  maxlength="100" >
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Citação
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <textarea class="input-admin" type="text" formControlName="citacao" ></textarea>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('citacao').touched && angForm.get('citacao').hasError('required')">Campo Obrigatório.</div>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('citacao').touched && angForm.get('citacao').hasError('minLength')">Campo muito curto.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Prioridade
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <div class="relative inline-block w-10 mr-2 align-middle border-2 border-veryLightGray rounded-full select-none transition duration-200 ease-in">
+        <input type="checkbox" name="toggle" #toggle (change)="togglePrioridade($event)" class="absolute block w-6 h-6 rounded-full bg-white border-2 appearance-none cursor-pointer transition duration-100 ease-in" [ngClass]="toggle.checked == true ? 'right-0 border-green' : '' "/>
+        <label for="toggle" class="block overflow-hidden h-6 rounded-full cursor-pointer transition duration-100 ease-in" [ngClass]="toggle.checked == true ? 'bg-green' : '' " ></label>
+      </div>
+    </div>
+  </div>
+  <div class="md:flex">
+    <div class="md:w-2/12"></div>
+    <div class="md:w-9/12">
+      <button type="button"  (click)="Salvar()" [disabled]="angForm.invalid"  [ngClass]="{'opacity-70 cursor-default': angForm.invalid,  'hover:bg-white hover:text-green': angForm.valid }"
+      class="font-museoRegular rounded-button w-44 h-14 bg-green text-md uppercase border-2 border-solid border-green text-center focus:outline-none" >
+        <span *ngIf="!showloading">
+          Salvar >
+        </span>
+        <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </button>
+    </div>
+    <div class="text-base text-orange mt-2" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+</form>

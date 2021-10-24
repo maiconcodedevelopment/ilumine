@@ -1,0 +1,25 @@
+<section class="pb-4 max-w-xl content-container">
+  <a [routerLink]="['/user']"  class="font-museoRegular text-darkGray text-xs uppercase hover:underline">< Voltar</a>
+  <div class="my-10 flex items-center">
+    <span class="h-5 w-5 rounded-md border-2 border-green mr-3 relative">
+      <i *ngIf="testeFeito" class="icon icon-check bg-green h-6 w-6 absolute icon-check-align"></i>
+    </span>
+    <p class="font-museoRegular text-green text-base">Questionário de Personalidade MAPA</p>
+  </div>
+  <div class="lg:max-w-xl" *ngIf="!testeFeito">
+    <p class="font-museoRegular text-darkGray text-2xl">
+      Você deve concluir o <a routerLink="/user/meu-teste-mapa" class="text-pink">questionário de personalidade MAPA</a> antes de prosseguir com as trilhas de conteúdo.
+    </p>
+  </div>
+  <div class="lg:max-w-xl" *ngIf="testeFeito">
+    <p class="font-museoRegular text-darkGray text-2xl">
+      Agora que você já conhece mais sobre sua personalidade, vamos começar nossa <span class="text-pink">jornada de desenvolvimento.</span>
+    </p>
+    <div *ngIf="!trilhas" class="w-full flex justify-center my-16" >
+      <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div *ngFor="let trilha of trilhas">
+      <app-trilha-card [color]="'pink'" [trilha]="trilha"></app-trilha-card>
+    </div>
+  </div>
+</section>

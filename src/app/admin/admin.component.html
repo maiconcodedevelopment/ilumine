@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ilumine - Admin</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="w-screen h-screen flex bg-gray-100">
+    <div class="flex flex-col bg-white">
+      <div class="min-h-20 h-20 flex items-center justify-center px-5">
+        <img *ngIf="sidebar" src="assets/images/logo-horizontal.png" />
+        <img *ngIf="!sidebar" src="assets/images/logo-vertical.png" />
+      </div>
+      <div class="flex flex-col {{sidebar ? '' : 'divide-y'}} overflow-y-auto flex-1 font-museoRegular">
+        <div *ngFor="let category of menu.categories" class="flex flex-col pt-11 pb-5 space-y-3">
+          <span class="text-xs px-4 uppercase" *ngIf="sidebar">{{category.label}}</span>
+          <a *ngFor="let item of category.items" [routerLink]="[item.route]" class="group flex items-center space-x-4 px-5 cursor-pointer">
+            <div class="w-10 h-10 rounded-full group-hover:bg-orange group-hover:text-white flex items-center justify-center {{ router.url == item.route ? 'bg-orange' : '' }}">
+              <span class="material-icons">{{item.icon}}</span>
+            </div>
+            <span *ngIf="sidebar">{{item.label}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 flex flex-col">
+      <header class="h-20 bg-white flex items-center justify-between px-4">
+        <a (click)="toggleSidebar()" class="cursor-pointer">
+          <span *ngIf="sidebar" class="material-icons">arrow_back</span>
+          <span *ngIf="!sidebar" class="material-icons">menu</span>
+        </a>
+        <div class="flex items-center space-x-3 font-museoRegular">
+          <span>{{currentUser.nome}}</span>
+          <a (click)="logoff()" class="text-orange underline cursor-pointer">(Sair)</a>
+        </div>
+      </header>
+      <div class="flex-1 overflow-y-auto p-10 admin-body ">
+        <div class="flex items-center space-x-2 mb-5">
+          <xng-breadcrumb separator=">">
+            <ng-container *xngBreadcrumbItem="let breadcrumb">
+              <ng-container class="text-sm breadcrumb-item relative font-museoRegular">{{ breadcrumb | titlecase }}</ng-container>
+            </ng-container>
+          </xng-breadcrumb>
+        </div>
+        <router-outlet>
+        </router-outlet>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

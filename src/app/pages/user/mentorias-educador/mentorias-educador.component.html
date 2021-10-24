@@ -1,0 +1,83 @@
+<section class="pb-4 flex-1 col-span-8 content-container">
+  <nav class="bg-white pb-10 w-full flex justify-between">
+    <div class="font-museoSemiBold text-sm uppercase text-veryLightGray w-2/4 flex justify-between" >
+      <a class="py-2 mr-6 cursor-pointer" [ngClass]="{'border-b text-green border-green': tabActive === 1}" (click)="toggleActivePage()">({{mentoriasAtuais.length}}) MENTORIAS ATUAIS</a>
+      <a class="py-2 cursor-pointer" [ngClass]="{'border-b text-green border-green': tabActive === 2}" (click)="toggleActivePage()">({{solicitacoes.length}}) SOLICITAÇÕES</a>
+    </div>
+    <button class="text-center flex items-center font-museoLight text-sm text-lightGray focus:outline-none group focus:text-green hover:text-greencursor-pointer" (click)="modalConfiguracao = true">
+      <i class="icon icon-settings bg-lightGray mr-2 w-5 h-5 group-hover:bg-green"></i>
+      <span class=" hidden md:block">configurações</span>
+    </button>
+  </nav>
+
+  <div *ngIf="tabActive === 1">
+    <p class="font-museoRegular text-darkGray text-2xl">Mentorias atuais</p>
+    <p class="font-museoRegular text-darkGray text-base mt-2 mb-4">Você é mentor de {{mentoriasAtuais.length}} usuários.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4" >
+      <div *ngFor="let item of mentoriasAtuais" class="rounded-xl h-80 w-8/12 mx-auto sm:w-44 bg-white bg-opacity-10 py-4 shadow-lg flex flex-col justify-center items-center">
+        <img  class="mx-4 w-20 h-20 rounded-full" [src]="item.foto ? item.foto : '/assets/images/user-picture-placeholder.png'" [alt]="item.nome">
+        <span class="font-museoRegular text-lightGray text-xs mt-2">Desde {{item.dataResposta | date: 'dd.MM.yyyy'}}</span>
+        <p class="mb-2 font-museoRegular text-lightGray text-base">{{item.nome}}</p>
+        <a [href]="'mailto:' + item.email" class="text-orange my-1 underline">Enviar e-mail</a>
+        <a *ngIf="item.telefone" [href]="'https://web.whatsapp.com/send?phone=55' + item.telefone" target="_blank" class="text-green my-1 underline">Chamar no Whatsapp</a>
+        <button (click)="cancelarMentoria(item.id)" class="font-museoSemiBold text-green text-xs rounded-button w-28 h-10 bg-veryLightOrange p-0 text-center inline-flex items-center justify-center mt-2">
+          <i class="icon icon-deny bg-lightGray mr-3 w-3 h-3 "></i>
+          <span class="text-lightGray">Remover</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="tabActive === 2">
+    <p class="font-museoRegular text-darkGray text-2xl">Solicitações de mentoria pendentes</p>
+    <p class="font-museoRegular text-darkGray text-base mt-2 mb-4" *ngIf="quantidadeMentorados !== undefined">Você tem {{ (quantidadeMentorados - mentoriasAtuais.length) }} slots de mentoria disponíveis.</p>
+
+    <div *ngFor="let item of solicitacoes" class="rounded-xl max-w-xl mx-auto md:w-full md:h-36 bg-white bg-opacity-10 py-4 pl-4 pr-10 shadow-lg flex flex-col sm:flex-row items-center my-6">
+      <img  class="mx-4 w-20 h-20 rounded-full" [src]="item.foto ? item.foto : '/assets/images/user-picture-placeholder.png'" [alt]="item.nome">
+      <div class="w-full">
+        <span class="font-museoRegular text-lightGray text-xs">{{item.dataSolicitacao | date: 'dd.MM.yyyy'}}</span>
+        <p class="mt-2 mb-4 font-museoRegular text-darkGray text-base">{{item.nome}} solicitou sua mentoria</p>
+        <div class="flex justify-around md:justify-start">
+          <button (click)="responderSolicitacao(item.id, false)" class="font-museoSemiBold text-green text-xs rounded-button w-28 h-10 mr-4 bg-veryLightGray p-0 text-center inline-flex items-center justify-center">
+            <i class="icon icon-deny bg-darkGray mr-3 w-3 h-3 group-hover:bg-green"></i>
+            <span class="text-darkGray">Recusar</span>
+          </button>
+          <button (click)="responderSolicitacao(item.id, true)" class="font-museoSemiBold text-green text-xs rounded-button w-28 h-10 bg-lightGreen p-0 text-center inline-flex items-center justify-center">
+            <i class="icon icon-accept bg-green mr-3 w-5 h-4 group-hover:bg-green"></i>
+            <span class="text-green">Aceitar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+
+<div class="modal" [ngClass]="{'hidden': !modalConfiguracao, 'block': modalConfiguracao}">
+  <div class="modal-content rounded-3xl h-96 w-96 mx-auto text-darkGray bg-white p-8 relative top-1/3">
+    <button class="absolute right-4 top-3 p-4 focus:outline-none" (click)="modalConfiguracao = false">
+      <i class="icon icon-deny bg-darkGray mr-3 w-4 h-4 "></i>
+    </button>
+    <p class="font-museoSemiBold text-2xl mb-8">Minhas mentorias</p>
+    <div class="mt-5 flex items-center">
+      <span class="font-museoRegular mr-5">Quantidade de mentorados</span>
+      <button class="font-museoSemiBold text-green text-xs w-4 h-4 rounded-button bg-iceWhite">
+        <span class="text-darkGray">?</span>
+      </button>
+      <div class="text-lightGray bg-iceWhite rounded-full outline-none px-4 py-2 w-20 h-10 ml-5 flex items-center">
+        <input class="bg-transparent text-lightGray outline-none focus:outline-none w-16 h-10 " type="text" mask="00" [(ngModel)]="quantidadeMentorados">
+      </div>
+    </div>
+    <div class="rounded-3xl bg-iceWhite p-4 mt-5">
+      <textarea class="w-full outline-none bg-transparent font-museoRegular" cols="30" rows="4" placeholder="Minha Biografia" [(ngModel)]="biografia"></textarea>
+    </div>
+    <div class="w-full flex justify-end mt-5">
+      <button class="font-museoSemiBold text-green text-xs rounded-button w-28 h-10 bg-lightGreen focus:outline-none" (click)="atualizaDadosMentoria()">
+        <span class="text-green">Salvar</span>
+      </button>
+    </div>
+  </div>
+</div>

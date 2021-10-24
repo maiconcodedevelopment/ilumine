@@ -1,0 +1,25 @@
+
+.bg-circle {
+  width: 333px;
+  height: 364px;
+  background-image: url(/assets/images/home-bg1.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.flower-mask {
+  &::after {
+    content: "";
+    min-width: 400px;
+    width: auto;
+    max-height: 416px;
+    max-width: 446px;
+    min-height: 400px;
+    height: auto;
+    background-image: url(/assets/icons/yellow-flower.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    @apply  absolute z-10 -top-0 left-0 lg:left-11 xl:left-48;
+  }
+}
+

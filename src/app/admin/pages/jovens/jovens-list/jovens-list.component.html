@@ -1,0 +1,57 @@
+<div *ngIf="data">
+  <h2 class="text-3xl font-museoBold text-gray-800">Mentorados</h2>
+  <span class="text-lg font-museoRegular text-gray-500">{{data.length}} registros</span>
+  <div class="grid grid-cols-12 gap-4 py-10">
+    <div class="bg-white rounded-sm shadow-sm col-span-12">
+      <div class="flex border-b p-5 items-center justify-between">
+        <div class="flex">
+          <div class="relative text-gray-600 border rounded-sm">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+              <span class="p-1 focus:outline-none focus:shadow-outline">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
+                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </span>
+            </span>
+            <input type="search" name="q"
+              class="bg-transparent py-2 text-sm text-black rounded-md pl-10 focus:outline-none focus:text-gray-900"
+              placeholder="Search..." autocomplete="off" [(ngModel)]="search"/>
+          </div>
+        </div>
+        <div class="flex flex-row space-x-2">
+          <button (click)="relatorioMentorados()" class="border p-2 rounded-md flex items-center space-x-2 font-museoRegular group hover:bg-gray-200 focus:outline-none">
+            <span *ngIf="!showloading">
+              <span class="material-icons group-hover:text-orange mr-1">cloud_download</span>
+              Extrair Relatório
+            </span>
+            <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          </button>
+          <button [routerLink]="['/admin/mentorados/novo']" class="border p-2 rounded-md flex items-center space-x-2 font-museoRegular group hover:bg-gray-200 focus:outline-none">
+            <span class="material-icons group-hover:text-orange">add</span>
+            Novo Mentorado
+          </button>
+        </div>
+      </div>
+      <table class="table-auto w-full text-left font-museoRegular">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 border-r">Id</th>
+            <th class="px-4 py-2 border-r">Nome</th>
+            <th class="px-4 py-2"></th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 font-museoRegular" infiniteScroll (scrolled)="loadMore()" [infiniteScrollContainer]="'.admin-body'" [fromRoot]="true">
+          <tr *ngFor="let item of data">
+            <td class="border border-l-0 px-4 py-2">{{item.id}}</td>
+            <td class="border border-l-0 px-4 py-2">{{item.nome}}</td>
+            <td class="border border-b-0 last:border-b-1 border-l-0 border-r-0 px-4 py-2 text-center flex justify-around">
+              <button [routerLink]="['/admin/mentorados', item.id]" class="inline hover:text-green focus:outline-none"><span class="material-icons">edit</span></button>
+              <button [routerLink]="['/admin/mentorados/excluir', item.id]" class="inline hover:text-orange focus:outline-none"><span class="material-icons">delete</span></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

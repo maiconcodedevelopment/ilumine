@@ -1,0 +1,50 @@
+<aside class="w-full lg:min-h-96 lg:w-80 bg-iceWhite rounded-2xl p-4 flex-shrink-0 mr-20 mb-16 lg:mb-0">
+  <section class="items-center flex mt-2 mb-12" *ngIf="user">
+    <img class="mx-4 w-14 h-14 rounded-full" [src]="user.foto ?  user.foto : '/assets/images/user-picture-placeholder.png'">
+    <div class="col-span-2 justify-start mr-auto" >
+      <a [routerLink]="['/user']" class="flex text-green uppercase text-sm font-museoSemiBold cursor-pointer w-full">
+        {{user.nome}}
+      </a>
+      <span class="font-museoRegular text-sm text text-lightGray">{{userTipo}}</span>
+    </div>
+    <button class="lg:hidden text-gray-500 w-10 h-10 relative focus:outline-none bg-transparent justify-self-end"  (click)="toggleMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </section>
+  <nav class="lg:flex mx-4 mb-6" *ngIf="user"  [ngClass]="displayMenu ? 'flex' : 'hidden'" (click)="toggleMenu()">
+    <ul class="flex flex-col">
+      <li class="font-museoRegular text-md text-lightGray py-4 px-2 group" *ngIf="userTipo !== 'Administrador' && userTipo !== 'Mentor'">
+        <a [routerLink]="['/user/minha-conta']"  [ngClass]="{'text-green': activeRoute.includes('/user/minha-conta')}" class="flex items-center group-hover:text-green">
+          <i class="icon icon-person bg-veryLightGray mr-5 w-5 h-5 group-hover:bg-green" [ngClass]="{'bg-green': activeRoute.includes('/user/minha-conta')}"></i>
+          Minha Conta
+        </a>
+      </li>
+      <li class="font-museoRegular text-md text-lightGray py-4 px-2 group" *ngIf="userTipo !== 'Administrador' && userTipo !== 'Mentor'">
+        <a [routerLink]="['/user/meu-teste-mapa']" [ngClass]="{'text-green': activeRoute.includes('/user/meu-teste-mapa')}" class="flex items-center group-hover:text-green">
+          <i class="icon icon-notepad bg-veryLightGray mr-6 w-5 h-5 group-hover:bg-green" [ngClass]="{'bg-green': activeRoute.includes('/user/meu-teste-mapa')}"></i>
+          Meu questionário MAPA
+        </a>
+      </li>
+      <li class="font-museoRegular text-md text-lightGray py-4 px-2 group">
+        <a [routerLink]="['/user/trilhas']" [ngClass]="{'text-green': activeRoute.includes('/user/trilhas')}" class="flex items-center group-hover:text-green">
+          <i class="icon icon-track bg-veryLightGray mr-6 w-5 h-5 group-hover:bg-green" [ngClass]="{'bg-green': activeRoute.includes('/user/trilhas')}"></i>
+          Trilhas
+        </a >
+      </li>
+      <li class="font-museoRegular text-md text-lightGray py-4 px-2 group" *ngIf="userTipo !== 'Administrador' && userTipo !== 'Educador'">
+        <a [routerLink]="[user.tipo !== 4 ? '/user/mentorias' : '/user/mentor']" [ngClass]="{'text-green': activeRoute.includes('/user/mentorias')}" class="flex items-center group-hover:text-green">
+          <i class="icon icon-chat bg-veryLightGray mr-6 w-5 h-5 group-hover:bg-green" [ngClass]="{'bg-green': activeRoute.includes('/user/mentorias')}"></i>
+          Mentoria
+        </a>
+      </li>
+      <li class="font-museoRegular text-md text-lightGray py-4 px-2 group" *ngIf="userTipo !== 'Administrador'">
+        <a [routerLink]="['/login']" (click)="logout()" [ngClass]="{'text-green': activeRoute.includes('/home')}" class="flex items-center group-hover:text-green">
+          <i class="icon icon-deny bg-veryLightGray mr-5 w-5 h-5 group-hover:bg-green" [ngClass]="{'bg-green': activeRoute.includes('/home')}"></i>
+          Logoff
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

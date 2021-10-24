@@ -1,0 +1,15 @@
+<swiper
+  [navigation]="true"
+  [autoplay]="true"
+  [speed]="3000"
+>
+  <ng-template swiperSlide *ngFor="let item of depoimentos">
+    <div class="bg-white container lg:w-8/12 flex justify-center items-center flex-col">
+      <div class="text-center px-8">
+        <p class="font-museoRegular uppercase text-sm text-darkGray my-6">{{item.nome}}</p>
+        <p class="font-museoRegular text-sm text-darkGray my-6">{{item.citacao}}</p>
+      </div>
+      <img class="h-8/12 w-8/12 my-10 rounded-full" src="/assets/icons/pink-line.svg" alt="">
+    </div>
+  </ng-template>
+</swiper>

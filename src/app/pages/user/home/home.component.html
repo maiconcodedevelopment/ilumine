@@ -1,0 +1,25 @@
+<section class="mt-20 pb-4 content-container">
+  <h2 *ngIf="user" class="font-museoSemiBold text-darkGray text-2xl mb-6">Olá, {{user.nome}}! :)</h2>
+  <div class="max-w-xl" *ngIf="testeFeito === false">
+    <h2 class="font-museoSemiBold text-darkGray text-2xl mb-6">Estamos felizes por você ter aceitado o convite de viver essa jornada de transformação conosco.</h2>
+    <p class="font-museoRegular text-darkGray text-base mb-10">
+      Juntos iremos nos conhecer melhor, potencializar nossos talentos e criar uma rede em prol de um mundo mais saudável e feliz.
+      <br>
+      <br>
+      Para começar nossa jornada, vamos descobrir como estamos através do <span class="text-orange">Questionário de Personalidade MAPA.</span>
+    </p>
+    <a href="https://sistemateste.mapabr.app/test/habilidadesocioemocionais" class="py-2 px-4 font-museoRegular rounded-button bg-orange text-md  h-12 w-6/12 lg:w-52 uppercase border-2 border-solid border-orange p-0 text-center hover:bg-white hover:text-orange focus:outline-none">
+      Preencha o seu
+    </a>
+  </div>
+</section>
+<section class="mt-10 pb-4 content-container">
+  <div *ngIf="iniciouTrilha">
+    <div class="rounded-2xl shadow-md min-h-72 py-6 px-5 max-w-xl">
+      <span class="font-museoRegular text-darkGray text-base">Continue de onde parou...</span>
+      <h4 class="font-museoSemiBold text-darkGray text-2xl my-5">Título da Trilha</h4>
+
+      <app-modulo-card [color]="'green'" [destaque]="true" [progress]="50" [hasButton]="true"></app-modulo-card>
+    </div>
+  </div>
+</section>

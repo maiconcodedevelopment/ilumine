@@ -1,0 +1,180 @@
+<h2 class="text-3xl font-museoBold text-gray-800">Excluir Cadastro do Educador</h2>
+<div class="w-full max-w-3xl mt-8" *ngIf="user">
+  <h3 class="text-lg font-museoBold text-gray-700 my-4">Pré Cadastro</h3>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Id
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.id}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Nome Completo
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.nome}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        E-mail
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.email}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        CPF
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.cpf  | mask: 'CPF_CNPJ'}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        RG
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.rg}}</span>
+    </div>
+  </div>
+    <div class="md:flex md:items-center mb-6">
+      <div class="md:w-3/12">
+        <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+          WhatsApp
+        </label>
+      </div>
+      <div class="md:w-9/12">
+        <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.whatsApp  | mask: '(00) 0 0000-0000'}}</span>
+      </div>
+    </div>
+  <h3 class="text-lg font-museoBold text-gray-700 my-4">Cadastro Completo</h3>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Data de nascimento
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.dataNascimento | date: 'dd/MM/yyyy'}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Gênero
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{genero}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Cidade
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.cidade}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Estado
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.uf}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Escolaridade
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{escolaridade}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Instituição, ONG ou Escola da qual faz parte:
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.instituicao}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	Instagram
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.instagram}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	Facebook
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.facebook}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	Twitter
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.twitter}}</span>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	LinkedIn
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <span class="block bg-gray-200 border border-veryLightGray rounded-md p-4 w-full h-11 py-2 px-4 text-gray-700">{{user.linkedin}}</span>
+    </div>
+  </div>
+
+  <div class="md:flex">
+    <div class="md:w-3/12"></div>
+    <div class="md:w-9/12">
+      <button type="button" (click)="Excluir()" class="font-museoRegular rounded-button w-44 h-14 bg-orange text-md uppercase border-2 border-solid border-orange text-center hover:bg-white hover:text-orange focus:outline-none" type="button">
+        <span *ngIf="!showloading">
+          Excluir >
+        </span>
+        <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </button>
+    </div>
+    <div class="text-base text-orange mt-2" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+</div>
+
+

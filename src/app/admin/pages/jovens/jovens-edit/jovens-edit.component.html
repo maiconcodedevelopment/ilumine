@@ -1,0 +1,190 @@
+<h2 class="text-3xl font-museoBold text-gray-800">Editar Cadastro do Mentorado</h2>
+<form class="w-full max-w-3xl mt-8"  [formGroup]="angForm">
+  <h3 class="text-lg font-museoBold text-gray-700 my-4">Pré Cadastro</h3>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Id
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="id">
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Nome Completo
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="nome">
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('nome').touched && angForm.get('nome').hasError('required')">Campo Obrigatório.</div>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('nome').touched && angForm.get('nome').hasError('minLength')">Campo muito curto.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        E-mail
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" disabled type="email" formControlName="email">
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('email').touched && angForm.get('email').hasError('required')">Campo Obrigatório.</div>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('email').touched && angForm.get('email').hasError('email')">Email inválido.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        CPF
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="cpf" mask="CPF_CNPJ">
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('cpf').touched && angForm.get('cpf').hasError('required')">Campo Obrigatório.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        RG
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="rg" >
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('rg').touched && angForm.get('rg').hasError('required')">Campo Obrigatório.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        WhatsApp
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="whatsApp" mask="(00) 0 0000-0000">
+    </div>
+  </div>
+  <h3 class="text-lg font-museoBold text-gray-700 my-4">Cadastro Completo</h3>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Data de nascimento
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="date" formControlName="dataNascimento" >
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Gênero
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <select class="input-admin"  name="escolaridade" formControlName="genero">
+        <option  *ngFor="let genero of generos | keyvalue" [value]="genero.key">{{genero.value}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Cidade
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="cidade" >
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Estado
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin uppercase" type="text" formControlName="uf" placeholder="UF" mask="AA">
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Escolaridade
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <select class="input-admin" name="escolaridade" formControlName="escolaridade">
+        <option  *ngFor="let escolaridade of escolaridades | keyvalue" [value]="escolaridade.key">{{escolaridade.value}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Instituição, ONG ou Escola da qual faz parte:
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="instituicao" >
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	Instagram
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="instagram" >
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	Facebook
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="facebook" >
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	Twitter
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="twitter" >
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       	LinkedIn
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="linkedin" >
+    </div>
+  </div>
+
+  <div class="md:flex">
+    <div class="md:w-3/12"></div>
+    <div class="md:w-9/12">
+      <button type="button"  (click)="Salvar()" [disabled]="angForm.invalid"  [ngClass]="{'opacity-70 cursor-default': angForm.invalid,  'hover:bg-white hover:text-green': angForm.valid }"
+      class="font-museoRegular rounded-button w-44 h-14 bg-green text-md uppercase border-2 border-solid border-green text-center focus:outline-none" >
+      Salvar >
+        <span *ngIf="!showloading">
+        </span>
+        <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </button>
+    </div>
+    <div class="text-base text-orange mt-2" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+</form>
+

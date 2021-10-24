@@ -1,0 +1,17 @@
+<app-header></app-header>
+<section class="container mt-8 mx-auto w-10/12">
+  <div class="grid grid-cols-3 gap-4">
+    <div class="col-span-3 md:col-span-1">
+      <h1 class="font-zerocalcare text-6xl text-orange mb-20">FIQUE POR DENTRO</h1>
+    </div>
+    <div class="col-span-3 md:col-span-2" *ngIf="postDestaque">
+      <app-blog-post [post]="postDestaque" [destaque]="true"></app-blog-post>
+    </div>
+  </div>
+</section>
+<section class="container relative text-center mx-auto w-10/12">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" infiniteScroll (scrolled)="loadMore()">
+    <app-blog-post *ngFor="let item of posts" [post]="item"></app-blog-post>
+  </div>
+</section>
+<app-footer></app-footer>

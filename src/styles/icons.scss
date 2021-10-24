@@ -1,0 +1,108 @@
+i.icon {
+  display: inline-block;
+  mask-size: contain;
+  mask-position: 100% 100%;
+  mask-repeat: no-repeat;
+
+  &.icon-sun {
+    mask-image: url(/assets/icons/sun.svg);
+  }
+
+  &.icon-tap {
+    mask-image: url(/assets/icons/tap.svg);
+  }
+
+  &.icon-text {
+    mask-image: url(/assets/icons/text.svg);
+  }
+
+  &.icon-question {
+    mask-image: url(/assets/icons/question.svg);
+  }
+
+  &.icon-message {
+    mask-image: url(/assets/icons/messenger.svg);
+  }
+
+  &.icon-laptop {
+    mask-image: url(/assets/icons/laptop.svg);
+    width: 62px;
+    height: 35px;
+  }
+
+  &.icon-online {
+    mask-image: url(/assets/icons/online.svg);
+    width: 63px;
+    height: 40px;
+  }
+
+  &.icon-charts {
+    mask-image: url(/assets/icons/charts.svg);
+    width: 59px;
+    height: 52px;
+  }
+
+  &.icon-person {
+    mask-image: url(/assets/icons/person.svg);
+  }
+
+  &.icon-pin {
+    mask-image: url(/assets/icons/pin.svg);
+  }
+
+  &.icon-track {
+    mask-image: url(/assets/icons/track.svg);
+  }
+
+  &.icon-notepad {
+    mask-image: url(/assets/icons/notepad.svg);
+  }
+
+  &.icon-target {
+    mask-image: url(/assets/icons/target.svg);
+  }
+
+  &.icon-arrow-select {
+    mask-image: url(/assets/icons/arrow-select.svg);
+  }
+
+  &.icon-chat {
+    mask-image: url(/assets/icons/chat.svg);
+  }
+
+  &.icon-check {
+    mask-image: url(/assets/icons/check.svg);
+  }
+
+  &.icon-deny {
+    mask-image: url(/assets/icons/deny.svg);
+  }
+
+  &.icon-accept {
+    mask-image: url(/assets/icons/accept.svg);
+  }
+
+  &.icon-heart {
+    mask-image: url(/assets/icons/heart.svg);
+  }
+
+  &.icon-play {
+    mask-image: url(/assets/icons/play.svg);
+  }
+
+  &.icon-fullscreen {
+    mask-image: url(/assets/icons/fullscreen.svg);
+  }
+
+  &.icon-settings {
+    mask-image: url(/assets/icons/settings.svg);
+  }
+
+  &.icon-video-settings {
+    mask-image: url(/assets/icons/video-settings.svg);
+  }
+
+  &.icon-notification {
+    mask-image: url(/assets/icons/bell.svg);
+  }
+}

@@ -1,0 +1,95 @@
+<section class="pb-4 max-w-3xl content-container" *ngIf="this.modulo && this.conteudos">
+  <a  [routerLink]="['/user/trilha', this.modulo.idTrilha]"  class="font-museoRegular text-darkGray text-xs uppercase hover:underline">< Voltar</a>
+
+  <div class="mb-10 flex flex-col md:flex-row md:justify-between md:items-center mt-10">
+    <p class="font-museoRegular text-pink text-xs uppercase">Módulo {{modulo.ordem}}</p>
+
+    <div class="flex flex-col md:flex-row md:items-center flex-grow ">
+      <div class="h-5 my-10 flex md:items-center md:my-0 md:mx-8 flex-grow justify-between">
+        <div *ngFor="let conteudo of conteudos; let last = last;" class="inline-flex items-center justify-center" [class.flex-1]="!last">
+          <div class="h-3 w-3 border border-lightPink rounded-full" [class.bg-lightPink]="conteudo.concluido" [class.cursor-pointer]="conteudo.concluido || nextIndexAvailable(conteudo)" (click)="navigateConteudo(conteudo)" [routerLink]="conteudo.concluido || nextIndexAvailable(conteudo) ? ['/user/modulo', modulo.id, 'conteudo', conteudo.id] : []"></div>
+          <div class="h-0 w-full border border-lightPink" *ngIf="!last"></div>
+        </div>
+      </div>
+
+      <button (click)="nextStep()" class="font-museoRegular text-xs rounded-button w-36 h-10 bg-pink uppercase border-2 border-solid border-pink p-0 text-center hover:bg-white hover:text-pink focus:outline-none transition duration-200 ease-in-out">
+        Próximo >
+      </button>
+    </div>
+
+  </div>
+
+  <div>
+    <div *ngIf="conteudos[currentStep].tipo === 1">
+      <app-texto [conteudo]="conteudos[currentStep]"></app-texto>
+    </div>
+
+    <div *ngIf="conteudos[currentStep].tipo === 2">
+      <app-video [conteudo]="conteudos[currentStep]"></app-video>
+    </div>
+  </div>
+
+  <div>
+    <p *ngIf="conteudos[currentStep].qtdAssistidos" class="font-museoRegular text-darkGray text-sm mt-6 mb-10">{{conteudos[currentStep].qtdAssistidos}} pessoas assistiram a esse conteúdo.</p>
+
+
+    <button class="font-museoSemiBold text-darkGray block" *ngIf="conteudos[currentStep].anexos && conteudos[currentStep].anexos.length > 0" (click)="anexosOpen = !anexosOpen">
+      <span class="underline">Material de Apoio</span>
+       <i class="icon icon-arrow-select bg-darkGray ml-5 w-5 h-5 transform" [class.rotate-180]="!anexosOpen" ></i>
+    </button>
+    <div *ngIf="anexosOpen" class="mt-4 mb-8">
+      <ul>
+        <li *ngFor="let anexo of conteudos[currentStep].anexos" class="pl-2 text-orange underline">
+          <a [href]="anexo.url" target="_blank">{{anexo.nome}}</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <button class="font-museoSemiBold text-darkGray block mt-16">
+     <span class="underline">Comentários e Dúvidas ({{conteudos[currentStep].qtdComentarios}})</span>
+      <i class="icon icon-arrow-select bg-darkGray ml-5 w-5 h-5 transform" [class.rotate-180]="!comentariosOpen" (click)="loadComentarios()"></i>
+    </button>
+
+    <div *ngIf="comentarios !== undefined && comentariosOpen" class="mt-16">
+      <app-comentario [comentarios]="comentarios"></app-comentario>
+    </div>
+
+    <div class="flex flex-col mt-16 mb-10">
+      <label class="w-full mb-5 font-museoSemiBold text-darkGray" for="comentario">Tem alguma dúvida ou comentário?</label>
+      <div class="border border-veryLightGray rounded-3xl font-museoRegular p-4">
+        <textarea [(ngModel)]="novoComentario" maxlength="1024" class="w-full focus:outline-none" name="comentario" placeholder="As mensagens públicas ficarão visíveis nessa página. Quando sua mensagem for respondida ela ficará visível para todos os usuários" cols="30" rows="3"></textarea>
+      </div>
+    </div>
+
+    <div class="w-full flex justify-end">
+      <button routerLink="/fale-conosco" class="ml-auto font-museoRegular text-xs rounded-button w-40 h-10 bg-lightGray uppercase border-2 border-solid border-lightGray p-0 text-center hover:bg-white hover:text-lightGray focus:outline-none transition duration-200 ease-in-out">
+        Contato por e-mail
+      </button>
+      <button (click)="enviarComentario()" class="ml-5 font-museoRegular text-xs rounded-button w-36 h-10 bg-orange uppercase border-2 border-solid border-orange p-0 text-center hover:bg-white hover:text-orange focus:outline-none transition duration-200 ease-in-out">
+        Publicar
+      </button>
+    </div>
+  </div>
+
+
+</section>
+
+<section class="pb-4  w-full h-full relative z-10 flex justify-center items-center flex-col" *ngIf="isFinished">
+  <p class="font-museoSemiBold text-pink text-2xl">Parabéns! Você concluiu o Módulo {{modulo.ordem}} </p>
+  <p class="font-museoSemiBold text-pink text-2xl">“{{modulo.titulo}}”</p>
+
+  <div class="w-full flex justify-center mt-10">
+    <button class="font-museoSemiBold text-xs rounded-button w-40 h-10 bg-lightGray uppercase border-2 border-solid border-lightGray p-0 text-center hover:bg-white hover:text-lightGray focus:outline-none transition duration-200 ease-in-out">
+      Meu perfil
+    </button>
+    <button class="ml-5 font-museoSemiBold text-xs rounded-button w-36 h-10 bg-green uppercase border-2 border-solid border-green p-0 text-center hover:bg-white hover:text-green focus:outline-none transition duration-200 ease-in-out">
+      Publicar
+    </button>
+  </div>
+
+
+
+</section>
+
+

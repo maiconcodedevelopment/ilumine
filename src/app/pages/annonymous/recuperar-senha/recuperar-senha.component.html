@@ -1,0 +1,46 @@
+<app-header></app-header>
+<section class=" bg-veryLightOrange py-16 px-2 md:p-20 relative bg-center bg-no-repeat bg-cover md:bg-center" style="background-image: url(/assets/images/line-rainbow-half.png)" >
+  <div class="container relative text-center ">
+    <div class="bg-white rounded-xl max-w-xl mx-auto shadow-md flex items-center flex-col">
+      <h2 class="font-zerocalcare text-5xl px-12 md:px-0 md:text-6xl text-orange my-11">Vamos criar uma nova senha? :)</h2>
+      <form class="w-full p-0 mb-4 font-museoRegular text-lg md:w-8/12 " [formGroup]="loginForm" (ngSubmit)="resetarSenha()">
+        <div class="grid grid-flow-col">
+          <div class="px-4">
+            <div class="mb-5 text-left">
+              <input type="text" formControlName="email" autocomplete="email" placeholder="E-mail"  [ngClass]="{'border-darkGray text-darkGray': loginForm.get('email').dirty}"
+              class="bg-transparent outline-none placeholder-veryLightGray border border-veryLightGray text-veryLightGray rounded-3xl px-6 py-3 w-full  focus:border-darkGray focus:text-darkGray">
+              <div class="text-xs text-orange mt-2 pl-4" *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('required')">Campo Obrigatório.</div>
+              <div class="text-xs text-orange mt-2 pl-4" *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('email')">Email inválido.</div>
+            </div>
+            <div class="mb-5 text-left">
+              <input type="password" formControlName="password" autocomplete="current-password" placeholder="Senha" [ngClass]="{'border-darkGray text-darkGray': loginForm.get('password').dirty}"
+               class="bg-transparent outline-none placeholder-veryLightGray border border-veryLightGray text-veryLightGray rounded-3xl px-6 py-3 w-full focus:border-darkGray focus:text-darkGray">
+               <div class="text-xs text-orange mt-2 pl-4" *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">Campo Obrigatório.</div>
+            </div>
+            <div class="mb-5 text-left">
+              <input type="password" formControlName="confirmPassword" placeholder="Confirmar Senha" [ngClass]="{'border-darkGray text-darkGray': loginForm.get('confirmPassword').dirty}"
+               class="bg-transparent outline-none placeholder-veryLightGray border border-veryLightGray text-veryLightGray rounded-3xl px-6 py-3 w-full focus:border-darkGray focus:text-darkGray">
+               <div class="text-xs text-orange mt-2 pl-4" *ngIf="loginForm.get('confirmPassword').touched && loginForm.get('confirmPassword').hasError('required')">Campo Obrigatório.</div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit"  [disabled]="loginForm.invalid" [ngClass]="{'opacity-70 cursor-default': loginForm.invalid,  'hover:bg-white hover:text-green': loginForm.valid }"
+          class="font-museoRegular rounded-button p-0 group bg-green text-md mr-4 mb-4 h-12 w-5/12 lg:w-52 uppercase border-2 border-solid border-green text-center focus:outline-none">
+          <span *ngIf="!showloading">
+            Alterar Senha >
+          </span>
+          <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </button>
+
+        <div class="text-base text-orange mt-2" *ngIf="errorMessage">{{errorMessage}}</div>
+
+        <!-- <p class="text-darkGray mt-12 mb-5">
+          É novo por aqui?
+          <a [routerLink]="['/']" class="underline hover:text-lightGray">Crie sua conta!</a>
+        </p> -->
+      </form>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

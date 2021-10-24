@@ -1,0 +1,35 @@
+<div class="rounded-xl w-full bg-lightGray bg-opacity-10 p-4 mt-10 shadow-xl">
+  <div>
+    <!-- <span class="font-museoRegular uppercase text-xs text-lightGray">{{trilha.titulo}}</span> -->
+    <p class="font-museoSemiBold text-2xl text-darkGray my-4">{{trilha.titulo}}</p>
+  </div>
+  <p class="font-museoRegular text-base text-darkGray">{{trilha.descricao}}</p>
+  <div class="flex flex-col md:flex-row justify-between items-center my-2">
+    <div class="flex-grow">
+      <span class="font-museoRegular uppercase text-xs text-lightGray mr-4">Modulos: {{trilha.qtdModulos}}</span>
+      <!-- <span class="font-museoRegular uppercase text-xs text-lightGray">Duração: {{trilha.duracao}} min</span> -->
+    </div>
+    <button (click)="emitirCertificado()" *ngIf="progress === 100"
+      class="mt-4 mr-4 font-museoRegular text-xs rounded-button w-36 h-10 bg-orange uppercase border-2 border-solid border-orange p-0 text-center hover:bg-white hover:text-orange focus:outline-none transition duration-200 ease-in-out"
+    >
+      <span *ngIf="!showloading">Emitir Certificado</span>
+      <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </button>
+    <button [routerLink]="['/user/trilha', trilha.id]"
+    class="mt-4 font-museoRegular text-xs rounded-button w-36 h-10 bg-pink uppercase border-2 border-solid border-pink p-0 text-center hover:bg-white hover:text-pink focus:outline-none transition duration-200 ease-in-out"
+    >
+      <span> {{progress === 100 ? 'Ver Novamente >' : 'Continuar >' }}</span>
+    </button>
+  </div>
+  <div>
+    <div class="w-full py-4">
+      <div class="bg-white h-3 w-full rounded-full relative">
+        <span *ngIf="progress < 100 && progress > 0" class="border-white border-3 h-5 w-5  absolute top-0 -ml-2 -mt-1 z-10 shadow rounded-full" [style.left.%]="progress"
+          [ngClass]="{'bg-green': color === 'green', 'bg-pink': color === 'pink', 'bg-orange': color === 'orange', 'bg-yellow': color === 'yellow', 'bg-darkGray': color === 'gray'}"
+          ></span>
+          <span class="h-3 absolute left-0 top-0 rounded-full" [style.width.%]="progress"
+          [ngClass]="{'bg-green': color === 'green', 'bg-pink': color === 'pink', 'bg-orange': color === 'orange', 'bg-yellow': color === 'yellow', 'bg-darkGray': color === 'gray'}"
+          ></span>      </div>
+    </div>
+  </div>
+</div>

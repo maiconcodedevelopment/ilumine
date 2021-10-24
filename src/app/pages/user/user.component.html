@@ -1,0 +1,11 @@
+<app-header></app-header>
+
+<div class="container flex flex-col lg:flex-row min-h-full px-8 xl:pl-32 pt-12 pb-40">
+  <app-menu-lateral></app-menu-lateral>
+  <router-outlet></router-outlet>
+</div>
+
+<div class="relative">
+  <div class="absolute -top-60 right-0 z-0 bg-no-repeat bg-contain bg-center w-80 h-64" style="background-image: url(/assets/images/bg-drawing.png)"></div>
+  <app-footer></app-footer>
+</div>

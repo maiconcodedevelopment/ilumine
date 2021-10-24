@@ -1,0 +1,14 @@
+<section class="pb-4 max-w-xl content-container">
+  <a [routerLink]="['/user/trilhas']"  class="font-museoRegular text-darkGray text-xs uppercase hover:underline">< Voltar</a>
+  <div *ngIf="!trilha" class="w-full flex justify-center my-16" >
+    <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  </div>
+  <div class=" w-full lg:max-w-xl" *ngIf="trilha">
+    <h2 class="font-museoSemiBold text-darkGray text-2xl my-6">{{trilha.titulo}}</h2>
+    <p class="font-museoRegular text-darkGray text-base mb-10">{{trilha.descricao}}</p>
+
+    <div *ngFor="let modulo of modulos, let i = index">
+      <app-modulo-card [color]="i" [hasButton]="false" [modulo]="modulo" [enabled]="isModuloEnabled(modulo)"></app-modulo-card>
+    </div>
+  </div>
+</section>

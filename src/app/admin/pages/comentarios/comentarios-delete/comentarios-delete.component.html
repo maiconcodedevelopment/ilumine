@@ -1,0 +1,48 @@
+<h2 class="text-3xl font-museoBold text-gray-800">Excluir Comentário</h2>
+<form class="w-full max-w-3xl mt-8"  [formGroup]="angForm">
+  <h3 class="text-lg font-museoBold text-gray-700 my-4">Pré Cadastro</h3>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Conteúdo
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" disabled formControlName="breadcrumb">
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Data
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" disabled type="text" [value]="this.angForm.value.data | date:'dd/MM/yyyy HH:mm'"/>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-3/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Comentário
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <textarea class="input-admin" cols="30" rows="3" type="text" formControlName="texto"></textarea>
+    </div>
+  </div>
+  <div class="md:flex">
+    <div class="md:w-3/12"></div>
+    <div class="md:w-9/12">
+      <button type="button"  (click)="Excluir()" [disabled]="angForm.invalid"  [ngClass]="{'opacity-70 cursor-default': angForm.invalid,  'hover:bg-white hover:text-green': angForm.valid }"
+      class="font-museoRegular rounded-button w-44 h-14 bg-green text-md uppercase border-2 border-solid border-green text-center focus:outline-none" >
+      Excluir >
+        <span *ngIf="!showloading">
+        </span>
+        <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </button>
+    </div>
+    <div class="text-base text-orange mt-2" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+</form>
+

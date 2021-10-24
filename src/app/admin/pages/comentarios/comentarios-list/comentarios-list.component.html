@@ -1,0 +1,32 @@
+<div *ngIf="data">
+  <h2 class="text-3xl font-museoBold text-gray-800">Comentários Aguardando Resposta</h2>
+  <span class="text-lg font-museoRegular text-gray-500">{{data.length}} registros</span>
+  <div class="grid grid-cols-12 gap-4 py-10">
+    <div class="bg-white rounded-sm shadow-sm col-span-12">
+      <table class="table-auto w-full text-left font-museoRegular">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 border-r">Id</th>
+            <th class="px-4 py-2 border-r">Nome</th>
+            <th class="px-4 py-2 border-r">Conteúdo</th>
+            <th class="px-4 py-2 border-r">Data</th>
+            <th class="px-4 py-2"></th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 font-museoRegular" infiniteScroll (scrolled)="loadMore()" [infiniteScrollContainer]="'.admin-body'" [fromRoot]="true">
+          <tr *ngFor="let item of data">
+            <td class="border border-l-0 px-4 py-2">{{item.id}}</td>
+            <td class="border border-l-0 px-4 py-2">{{item.nome}}</td>
+            <td class="border border-l-0 px-4 py-2">{{item.conteudo}}</td>
+            <td class="border border-l-0 px-4 py-2">{{(item.data + 'Z') | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td class="border border-b-0 last:border-b-1 border-l-0 border-r-0 px-4 py-2 text-center flex justify-around">
+              <button [routerLink]="['/user/modulo', item.idModulo, 'conteudo', item.idConteudo]" class="inline hover:text-green focus:outline-none"><span class="material-icons">pageview</span></button>
+              <button [routerLink]="['/admin/comentarios', item.id]" class="inline hover:text-green focus:outline-none"><span class="material-icons">edit</span></button>
+              <button [routerLink]="['/admin/comentarios/excluir', item.id]" class="inline hover:text-orange focus:outline-none"><span class="material-icons">delete</span></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

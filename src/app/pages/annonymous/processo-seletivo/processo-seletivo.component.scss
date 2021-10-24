@@ -1,0 +1,16 @@
+.bg-image-before {
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    background-image: url(/assets/images/bg-light-orange.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    width:  calc(100% + 160px);
+    height: calc(100% + 160px);
+    z-index: -1;
+    left: 0;
+    bottom: 0;
+  }
+}

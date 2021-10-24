@@ -1,0 +1,52 @@
+<section class="pb-4 w-full flex-1 col-span-8 content-container">
+  <div *ngIf="!trilhaFinalizada">
+    <p class="font-museoRegular text-darkGray text-2xl mt-10">Mentores disponíveis</p>
+    <p class="font-museoRegular text-darkGray text-base mt-2 mb-4">Você precisa finalizar a trilha para escolher um mentor.</p>
+
+    <button [routerLink]="['/user/trilhas']" class="mt-8 font-museoRegular rounded-button bg-green text-md  h-12 w-36 lg:w-52 uppercase border-2 border-solid border-green p-0 text-center hover:bg-white hover:text-green focus:outline-none">
+      Continuar >
+    </button>
+  </div>
+  <div *ngIf="trilhaFinalizada">
+    <div *ngIf="!hasMentor">
+      <p class="font-museoRegular text-darkGray text-2xl mt-10">Mentores disponíveis</p>
+      <p class="font-museoRegular text-darkGray text-base mt-2 mb-4">Agora que você finalizou a trilha, escolha um mentor:</p>
+
+      <div *ngIf="listaMentores">
+        <div *ngFor="let mentor of listaMentores" class="rounded-xl lg:max-w-xl md:min-h-44 bg-white bg-opacity-10 py-4 pl-4 pr-10 shadow-lg flex flex-col md:flex-row md:items-center my-6 relative">
+          <img  class="mx-4 w-20 h-20 rounded-full" [src]="mentor.foto ?  mentor.foto : '/assets/images/user-picture-placeholder.png'">
+          <button
+            (click)="solicitarCancelarMentoria(mentor.id)"
+            [ngClass]="hasSolicitacao(mentor.id) !== -1 ? 'bg-lightGreen' : 'bg-lightGray'"
+            class="absolute right-4 top-10 md:top-4 font-museoSemiBold text-xs rounded-button w-24 h-8 bg-lightGreen p-0 text-center inline-flex items-center justify-center">
+            <span class="text-green" *ngIf="hasSolicitacao(mentor.id) === -1">Solicitar</span>
+            <span class="text-green" *ngIf="hasSolicitacao(mentor.id) !== -1">Cancelar</span>
+          </button>
+          <div class="w-full mt-4 md:mt-0">
+            <p class="mt-2 mb-2 font-museoSemiBold text-darkGray text-base">{{mentor.nome}}</p>
+            <span class="font-museoLight text-darkGray text-xs">{{mentor.biografia}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="hasMentor">
+
+      <p class="font-museoRegular text-darkGray text-2xl mt-10">Seu mentor</p>
+      <p class="font-museoRegular text-darkGray text-base mt-2 mb-4">Mentoria em andamento com:</p>
+      <div *ngIf="mentor" class="rounded-xl lg:max-w-xl md:min-h-44 bg-white bg-opacity-10 py-4 pl-4 pr-10 shadow-lg flex flex-col md:flex-row md:items-center my-6 relative">
+        <img  class="mx-4 w-20 h-20 rounded-full" [src]="mentor.foto ? mentor.foto : '/assets/images/user-picture-placeholder.png'">
+        <div class="w-full mt-4 md:mt-0">
+          <p class="mt-2 mb-2 font-museoSemiBold text-darkGray text-base">{{mentor.nome}}</p>
+          <a [href]="'mailto:' + mentor.email" class="text-orange my-1 underline font-museoLight text-xs cursor-pointer">Enviar e-mail</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+

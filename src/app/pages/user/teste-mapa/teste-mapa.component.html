@@ -1,0 +1,19 @@
+<section class="mt-20 pb-4 content-container">
+  <div class="max-w-xl" *ngIf="!testeFeito">
+    <h2 class="font-museoSemiBold text-darkGray text-2xl mb-6">Estamos felizes por você ter aceitado o convite de viver essa jornada de transformação conosco.</h2>
+    <p class="font-museoRegular text-darkGray text-base">
+      Juntos iremos nos conhecer melhor, potencializar nossos talentos e criar uma rede em prol de um mundo mais saudável e feliz.
+      <br>
+      <br>
+      Para começar nossa jornada, vamos descobrir como estamos através do <span class="text-orange">Questionário de Personalidade MAPA.</span>
+    </p>
+    <button [routerLink]="['/user']" class="mt-10 font-museoRegular rounded-button bg-orange text-md  h-12 w-6/12 lg:w-52 uppercase border-2 border-solid border-orange p-0 text-center hover:bg-white hover:text-orange focus:outline-none">
+      Preencha o seu
+    </button>
+  </div>
+  <div class="lg:max-w-xl" *ngIf="testeFeito">
+    <p class="font-museoRegular text-darkGray text-2xl">
+      Agora que você já concluiu o seu questionário de personalidade, siga para assistir nossas <a routerLink="/user/trilhas" class="text-pink">Trilhas de Conteúdo</a>.
+    </p>
+  </div>
+</section>

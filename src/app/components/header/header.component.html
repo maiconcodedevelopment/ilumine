@@ -1,0 +1,56 @@
+<header class="h-20 bg-snowWhite shadow relative lg:static z-30" [ngClass]="displayMenu ? 'shadow-none' : 'shadow'">
+  <div class="container flex items-center justify-between h-full lg?">
+    <a [routerLink]="['/']" class="w-6/12 lg:w-3/12 h-full relative cursor-pointer z-20 ">
+      <img class="absolute left-1 lg:left-2 xl:left-20 -top-6" src="/assets/images/logo-horizontal.png">
+    </a>
+
+    <button class="lg:hidden text-gray-500 w-10 h-10 relative focus:outline-none bg-snowWhite"  (click)="toggleMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <nav  [ngClass]="displayMenu ? 'flex' : 'hidden'" class="font-museoRegular text-xs text-lightGray uppercase items-center bg-snowWhite
+     shadow w-full absolute top-20 right-0 flex-col lg:max-h-16 lg:shadow-none lg:flex-row lg:text-center lg:w-10/12 lg:relative lg:top-0 lg:flex">
+      <ul  class="items-center text-center flex flex-col lg:max-h-16 lg:flex-row flex-1 lg:w-8/12">
+        <li class="nav-link lg:border-r">
+          <a [routerLink]="['/o-instituto']"><i class="icon icon-sun bg-veryLightGray mr-2 w-4 h-4"></i>O Instituto</a>
+        </li>
+        <li class="nav-link lg:border-r">
+          <a class="inline-flex items-center" [routerLink]="['/como-participar']"><i class="icon icon-question bg-veryLightGray mr-3 w-4 h-4"></i> Como participar</a>
+        </li>
+        <li class="nav-link lg:border-r">
+          <a  class="inline-flex items-center" [routerLink]="['/blog']"><i class="icon icon-text bg-veryLightGray mr-3 w-4 h-4"></i>Blog</a>
+        </li>
+        <li class="nav-link lg:border-r">
+          <a  class="inline-flex items-center" [routerLink]="['/como-contribuir']"><i class="icon icon-tap bg-veryLightGray mr-3 w-4 h-4"></i>Como Contribuir</a>
+        </li>
+        <li class="nav-link lg:border-r">
+          <a class="inline-flex items-center"  [routerLink]="['/fale-conosco']"><i class="icon icon-message bg-veryLightGray mr-3 w-4 h-4"></i>Contato</a>
+        </li>
+        <!-- <li class="nav-link">
+          <a class="inline-flex items-center" [routerLink]="['/processo-seletivo']"><i class="icon icon-target bg-veryLightGray mr-3 w-4 h-4"></i>Processo Seletivo</a>
+        </li> -->
+      </ul>
+      <div *ngIf="user && user.userProfile" class="flex items-center">
+        <a [routerLink]="['/user']" class="flex text-green uppercase text-sm font-museoSemiBold cursor-pointer w-full">
+          {{user.userProfile.nome}}
+        </a>
+        <img class="mx-4 w-14 h-14 rounded-full" [src]="user.userProfile.foto ?  user.userProfile.foto : '/assets/images/user-picture-placeholder.png'">
+        <!-- <span class="font-museoRegular text-sm text text-lightGray">{{userTipo}}</span> -->
+      </div>
+      <div *ngIf="!user">
+        <a [routerLink]="['/login']" class="flex items-center text-green justify-center text-center text-sm font-museoSemiBold m-4 lg:m-0 cursor-pointer w-full hover:underline lg:w-1/12 lg:mr-1 xl:w-2/12">
+          Login
+          <img  class="w-auto ml-4 lg:hidden xl:block" src="/assets/images/user-picture-placeholder.png" alt="Pessoa" style="max-width: initial;">
+        </a>
+      </div>
+      <!--<button class="font-museoRegular rounded-button bg-orange text-sm uppercase border-2 border-solid border-orange w-10/12 mb-4 lg:mb-0 cursor-pointer text-center hover:bg-white hover:text-orange focus:outline-none lg:w-2/12">
+        Cadastre-se
+      </button> -->
+      <!-- <button class="nav-link focus:outline-none" *ngIf="user">
+        <span class="inline-flex items-center"><i class="icon icon-notification bg-veryLightGray mr-3 w-4 h-4"></i>notificações</span>
+      </button> -->
+    </nav>
+  </div>
+</header>

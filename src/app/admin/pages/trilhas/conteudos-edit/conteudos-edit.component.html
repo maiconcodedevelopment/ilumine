@@ -1,0 +1,117 @@
+<h2 class="text-3xl font-museoBold text-gray-800">Editar Conteúdo</h2>
+<form class="w-full max-w-3xl mt-8"  [formGroup]="angForm">
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Id
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" disabled formControlName="id">
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Título
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="titulo" >
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('titulo').touched && angForm.get('titulo').hasError('required')">Campo Obrigatório.</div>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('titulo').touched && angForm.get('titulo').hasError('minLength')">Campo muito curto.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Tipo
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <select *ngIf="tipos" class="input-admin"  name="escolaridade" selected formControlName="tipo">
+        <option  *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nome}}</option>
+      </select>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('tipo').touched && angForm.get('tipo').hasError('required')">Campo Obrigatório.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6" *ngIf="this.angForm.value.tipo === 1">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Descrição
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <textarea class="input-admin" type="text" formControlName="texto" ></textarea>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('texto').touched && angForm.get('texto').hasError('required')">Campo Obrigatório.</div>
+      <div class="text-xs text-orange mt-2 pl-4" *ngIf="angForm.get('texto').touched && angForm.get('texto').hasError('minLength')">Campo muito curto.</div>
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6" *ngIf="this.angForm.value.tipo === 2">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Url do Vídeo
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="text" formControlName="url" />
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-2/12">
+      <label class="block text-gray-500 font-museoSemiBold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Ordenação
+      </label>
+    </div>
+    <div class="md:w-9/12">
+      <input class="input-admin" type="number" formControlName="ordem" />
+    </div>
+  </div>
+  <div class="md:flex">
+    <div class="md:w-2/12"></div>
+    <div class="md:w-9/12">
+      <button type="button"  (click)="Salvar()" [disabled]="angForm.invalid"  [ngClass]="{'opacity-70 cursor-default': angForm.invalid,  'hover:bg-white hover:text-green': angForm.valid }"
+      class="font-museoRegular rounded-button w-44 h-14 bg-green text-md uppercase border-2 border-solid border-green text-center focus:outline-none" >
+        <span *ngIf="!showloading">
+          Salvar >
+        </span>
+        <div *ngIf="showloading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </button>
+    </div>
+    <div class="text-base text-orange mt-2" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+  <div class="grid grid-cols-12 gap-4 py-10">
+    <div class="bg-white rounded-sm shadow-sm col-span-12">
+      <div class="flex border-b p-5 items-center justify-between">
+        <button [routerLink]="['/admin/trilhas/', this.angForm.value.idTrilha, 'modulos', this.angForm.value.idModulo, 'conteudos', this.idConteudo, 'anexos', 'novo']" class="border p-2 rounded-md flex items-center space-x-2 font-museoRegular group hover:bg-gray-200 focus:outline-none">
+          <span class="material-icons group-hover:text-orange">add</span>
+          Novo Anexo
+        </button>
+      </div>
+      <table class="table-auto w-full text-left font-museoRegular">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 border-r">Id</th>
+            <th class="px-4 py-2 border-r">Nome</th>
+            <th class="px-4 py-2 border-r">Download</th>
+            <th class="px-4 py-2"></th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 font-museoRegular">
+          <tr *ngFor="let item of anexos">
+            <td class="border border-l-0 px-4 py-2">{{item.id}}</td>
+            <td class="border border-l-0 px-4 py-2">{{item.nome}}</td>
+            <td class="border border-l-0 px-4 py-2 text-center">
+              <a [href]="item.conteudoUrl" target="_blank" class="inline hover:text-orange focus:outline-none">
+                <span class="material-icons" >cloud_download</span>
+              </a>
+            </td>
+            <td class="border border-b-0 border-l-0 last:border  border-r-0 px-4 py-2 text-center flex justify-around">
+              <button [routerLink]="['/admin/trilhas', this.angForm.value.idTrilha , 'modulos', this.angForm.value.idModulo, 'conteudos', this.idConteudo, 'anexos', item.id, 'excluir']" class="inline hover:text-orange focus:outline-none"><span class="material-icons">delete</span></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>

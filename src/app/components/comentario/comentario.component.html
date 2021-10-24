@@ -1,0 +1,31 @@
+<div class="w-full rounded-3xl bg-iceWhite my-5 p-4" *ngFor="let item of comentarios">
+  <div class="items-center flex mt-2 mb-5 w-full">
+    <img  class="mr-4 w-14 h-14 rounded-full" [src]="item.usuario.foto" [alt]="item.usuario.nome">
+    <div class="col-span-2 justify-start" >
+      <span  class="flex items-center text-green uppercase justify-center text-center text-sm font-museoSemiBold cursor-pointer w-full">
+        {{item.usuario.nome}}
+      </span>
+    </div>
+    <div class="ml-auto">
+      <i class="icon icon-heart bg-veryLightGray mr-5 w-5 h-5 cursor-pointer"></i>
+    </div>
+  </div>
+  <p class="font-museoRegular text-lightGray text-sm ml-1">{{item.texto}}</p>
+
+  <div *ngIf="item.respostas.length > 0">
+    <div class="w-full rounded-3xl bg-white my-5 p-4" *ngFor="let resposta of item.respostas">
+      <div class="items-center flex mt-2 mb-5 w-full">
+        <img  class="mr-4 w-14 h-14 rounded-full" [src]="resposta.usuario.foto" [alt]="resposta.usuario.nome">
+        <div class="col-span-2 justify-start" >
+          <span class="flex items-center text-green uppercase justify-center text-center text-sm font-museoSemiBold cursor-pointer w-full">
+            {{resposta.usuario.nome}}
+          </span>
+        </div>
+        <!-- <button class="ml-auto focus:outline-none">
+          <i class="icon icon-heart bg-veryLightGray mr-5 w-5 h-5 cursor-pointer"></i>
+        </button> -->
+      </div>
+      <p class="font-museoRegular text-lightGray text-sm ml-1">{{resposta.texto}}</p>
+    </div>
+  </div>
+</div>

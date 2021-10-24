@@ -1,0 +1,86 @@
+<app-header></app-header>
+<section class="relative">
+  <div class="container md:w-8/12 mx-auto py-16 md:py-32">
+    <div class="flex flex-wrap">
+      <div class="w-full lg:w-4/12 px-2 mb-4">
+        <div class="flex items-center justify-center">
+          <div>
+            <h1 class="font-zerocalcare text-6xl text-pink mb-4">Fale conosco!</h1>
+            <p class="mb-24 font-museoRegular text-lightGray">
+              contato@ilumine.com.br
+            </p>
+          </div>
+        </div>
+      </div>
+      <form class="w-full lg:w-8/12 px-2 mb-4 md:pl-12" [formGroup]="contatoForm">
+
+        <div class="block md:grid md:grid-flow-col">
+          <div class="px-4">
+            <div class="relative">
+              <input type="text" formControlName="nome" placeholder="NOME*"
+                class="bg-transparent outline-none placeholder-lightGray border border-green text-lightGray rounded-3xl px-6 py-3 w-full mb-5">
+              <div class="text-xs text-orange absolute feedback-text" *ngIf="nome.touched && nome.hasError('required')">
+                Campo Obrigatório.</div>
+              <div class="text-xs text-orange absolute feedback-text"
+                *ngIf="nome.touched && nome.hasError('minlength')">Campo muito curto.</div>
+            </div>
+
+            <div class="relative">
+              <input type="text" formControlName="email" placeholder="E-MAIL*"
+                class="bg-transparent outline-none placeholder-lightGray border border-green text-lightGray rounded-3xl px-6 py-3 w-full mb-5">
+              <div class="text-xs text-orange absolute feedback-text"
+                *ngIf="email.touched && email.hasError('required')">Campo Obrigatório.</div>
+              <div class="text-xs text-orange absolute feedback-text"
+                *ngIf="email.touched && email.hasError('pattern')">E-mail inválido.</div>
+            </div>
+          </div>
+
+          <div class="px-4">
+            <div class="relative">
+              <input type="text" formControlName="telefone" placeholder="WHATSAPP*" mask="(00) 0 0000-0000"
+                class="bg-transparent outline-none placeholder-lightGray border border-green text-lightGray rounded-3xl px-6 py-3 w-full mb-5">
+              <div class="text-xs text-orange absolute feedback-text"
+                *ngIf="telefone.touched && telefone.hasError('required')">Campo Obrigatório.</div>
+            </div>
+
+            <div class="relative">
+              <input type="text" formControlName="assunto" placeholder="ASSUNTO*"
+                class="bg-transparent outline-none placeholder-lightGray border border-green text-lightGray rounded-3xl px-6 py-3 w-full mb-5">
+              <div class="text-xs text-orange absolute feedback-text"
+                *ngIf="assunto.touched && assunto.hasError('required')">Campo Obrigatório.</div>
+              <div class="text-xs text-orange absolute feedback-text"
+                *ngIf="assunto.touched && assunto.hasError('minlength')">Campo muito curto.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-4 mb-4">
+          <div class="relative">
+            <textarea formControlName="mensagem" placeholder="MENSAGEM*"
+              class="h-36 resize-none bg-transparent outline-none placeholder-lightGray border border-green text-lightGray rounded-3xl px-6 py-3 w-full"></textarea>
+            <div class="text-xs text-orange absolute feedback-text-mensagem"
+              *ngIf="mensagem.touched && mensagem.hasError('required')">Campo Obrigatório.</div>
+            <div class="text-xs text-orange absolute feedback-text-mensagem"
+              *ngIf="mensagem.touched && mensagem.hasError('minlength')">Campo muito curto.</div>
+          </div>
+        </div>
+
+        <button (click)="submit()"
+          class="cursor-pointer float-right font-museoRegular rounded-button bg-green text-md mr-4 mb-4 h-12 w-5/12 lg:w-52 uppercase border-2 border-solid border-green p-0 text-center hover:bg-white hover:text-green">
+          ENVIAR
+        </button>
+
+        <div class="clear-both" *ngIf="showSuccess || showSuccess">
+          <div class="feedback text-md text-green" *ngIf="showSuccess">Contato enviado com sucesso. Logo retornaremos.
+          </div>
+          <div class="feedback text-md text-orange" *ngIf="showError">O formulário contém erros. Por favor verifique
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
