@@ -52,4 +52,4 @@ jobs:
           app-name: 'ilumine-ci'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B4610BCB693B4FD796825482B9243EFC }}
-          package: .
+          package: ./dist/ilumine-ci
