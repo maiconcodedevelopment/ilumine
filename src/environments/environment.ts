@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   //apiUrl: 'https://ilumine-srv.azurewebsites.net/api/v1'
-  apiUrl: 'https://localhost:44388/api/v1'
+  apiUrl: 'https://ilumine-service.azurewebsites.net/api/v1'
 };
 
 /*
